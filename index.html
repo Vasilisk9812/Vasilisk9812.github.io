@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВФСК ГТО - Всероссийский физкультурно-спортивный комплекс</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            background-color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3c72;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3c72;
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        nav a.active {
+            color: #ffcc00;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ffcc00;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)), url('https://images.unsplash.com/photo-1536922246289-88c42f957773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+        /* Norms Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: #1e3c72;
+            font-size: 32px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b35;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .norms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .norm-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .norm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .norm-icon {
+            background-color: #2a5298;
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .norm-content {
+            padding: 20px;
+        }
+
+        .norm-content h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .norm-content p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .norm-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .norm-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Stages Section */
+        .stages {
+            background-color: #f0f4ff;
+            padding: 60px 0;
+            margin: 40px 0;
+        }
+
+        .stages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .stage-item {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stage-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .stage-item h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .news-image {
+            height: 180px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            color: #ff6b35;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .news-content h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .news-content p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: #ff6b35;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #2a5298;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #ff6b35;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2a5298;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 20px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 30px;
+            }
+            
+            .hero p {
+                font-size: 17px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .norm-card, .news-card {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">ГТО</div>
+                    <div class="logo-text">
+                        <h1>ВФСК ГТО</h1>
+                        <p>Всероссийский физкультурно-спортивный комплекс</p>
+                    </div>
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Войти</button>
+                    <button class="btn btn-primary">Регистрация</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Главная</a></li>
+                    <li><a href="#">О комплексе</a></li>
+                    <li><a href="#">Нормы ГТО</a></li>
+                    <li><a href="#">Как выполнить</a></li>
+                    <li><a href="#">Центры тестирования</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Медиагалерея</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Готов к труду и обороне!</h2>
+            <p>Всероссийский физкультурно-спортивный комплекс «Готов к труду и обороне» — это основа физического воспитания населения страны, нацеленная на развитие массового спорта и оздоровление нации.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Записаться на тестирование</button>
+                <button class="btn btn-outline">Узнать нормы ГТО</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Norms Section -->
+    <div class="container">
+        <h2 class="section-title">Нормативы ГТО</h2>
+        <div class="norms-grid">
+            <div class="norm-card">
+                <div class="norm-icon">
+                    <i class="fas fa-child"></i>
+                </div>
+                <div class="norm-content">
+                    <h3>Для школьников</h3>
+                    <p>Нормативы ГТО для учащихся школ с 6 до 17 лет. I-V возрастные ступени.</p>
+                    <a href="#" class="norm-link">Узнать подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="norm-card">
+                <div class="norm-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="norm-content">
+                    <h3>Для взрослых</h3>
+                    <p>Нормативы ГТО для мужчин и женщин от 18 до 29 лет. VI ступень.</p>
+                    <a href="#" class="norm-link">Узнать подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="norm-card">
+                <div class="norm-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="norm-content">
+                    <h3>Для всех возрастов</h3>
+                    <p>Нормативы ГТО для мужчин и женщин от 30 до 70 лет и старше.</p>
+                    <a href="#" class="norm-link">Узнать подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stages Section -->
+    <section class="stages">
+        <div class="container">
+            <h2 class="section-title">Как выполнить нормы ГТО</h2>
+            <div class="stages-container">
+                <div class="stage-item">
+                    <div class="stage-number">1</div>
+                    <h3>Регистрация</h3>
+                    <p>Зарегистрируйтесь на сайте gto.ru и получите уникальный ID-номер</p>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">2</div>
+                    <h3>Подача заявки</h3>
+                    <p>Подайте заявку в ближайший центр тестирования ГТО</p>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">3</div>
+                    <h3>Подготовка</h3>
+                    <p>Подготовьтесь к выполнению нормативов</p>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">4</div>
+                    <h3>Сдача нормативов</h3>
+                    <p>Выполните испытания в центре тестирования</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <div class="container">
+        <h2 class="section-title">Новости ГТО</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="news-content">
+                    <div class="news-date">15 июня 2023</div>
+                    <h3>Всероссийский день ГТО прошел во всех регионах страны</h3>
+                    <p>Мероприятия, посвященные празднованию Всероссийского дня ГТО, прошли в 85 регионах страны с участием более 500 тысяч человек.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="news-content">
+                    <div class="news-date">2 июня 2023</div>
+                    <h3>Более 2 млн школьников выполнили нормы ГТО в 2023 году</h3>
+                    <p>По данным Минспорта России, с начала года нормативы комплекса ГТО выполнили более 2 миллионов школьников по всей стране.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="news-content">
+                    <div class="news-date">25 мая 2023</div>
+                    <h3>Запущен мобильный центр тестирования ГТО</h3>
+                    <p>В пяти регионах страны начали работу мобильные центры тестирования ГТО, которые позволят охватить жителей отдаленных населенных пунктов.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ВФСК ГТО</h3>
+                    <p>Всероссийский физкультурно-спортивный комплекс «Готов к труду и обороне» — это полноценная программная и нормативная основа физического воспитания населения страны.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Разделы сайта</h3>
+                    <ul>
+                        <li><a href="#">О комплексе ГТО</a></li>
+                        <li><a href="#">Нормативы ГТО</a></li>
+                        <li><a href="#">Как выполнить ГТО</a></li>
+                        <li><a href="#">Центры тестирования</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Медиагалерея</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8-800-222-22-51</li>
+                        <li><i class="fas fa-envelope"></i> gto@fd-sport.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Казакова, д. 18</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Всероссийский физкультурно-спортивный комплекс «Готов к труду и обороне». Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('nav a').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
